@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Options</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        background-color: #99b898;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .options label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .options input[type="checkbox"] {
+        margin-right: 10px;
+      }
+
+      #name,
+      #phone,
+      #email,
+      #address {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+      }
+
+      #submit {
+        width: 100%;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>CAR OPTIONS</h1>
+      <form id="carForm">
+        <div class="options">
+          <label>
+            <input type="checkbox" name="carOption" value="Hatchback" />
+            Hatchback
+          </label>
+          <label>
+            <input type="checkbox" name="carOption" value="Sedan" /> Sedan
+          </label>
+          <label>
+            <input type="checkbox" name="carOption" value="SUV" /> SUV
+          </label>
+        </div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+
+        <button type="button" id="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("submit").addEventListener("click", function () {
+        const form = document.getElementById("carForm");
+        const formData = new FormData(form);
+
+        const selectedOptions = [];
+        formData.getAll("carOption").forEach((option) => {
+          selectedOptions.push(option);
+        });
+
+        const name = formData.get("name");
+        const phone = formData.get("phone");
+        const email = formData.get("email");
+        const address = formData.get("address");
+
+        console.log("Selected Car Options:", selectedOptions);
+        console.log("Name:", name);
+        console.log("Phone Number:", phone);
+        console.log("Email ID:", email);
+        console.log("Address:", address);
+      });
+    </script>
+  </body>
+</html>
